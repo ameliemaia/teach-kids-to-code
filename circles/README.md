@@ -1,6 +1,6 @@
-# Circles - Teach Kids To Code
+# Circles - Teach Kids to Code
 
-**Teach Kids To Code** was a series of posters originally created with [Scriptographer](https://scriptographer.org/) in 2012 by Amelie Maia and Christina Winkless.
+**Teach Kids to Code** was a series of posters originally created with [Scriptographer](https://scriptographer.org/) in 2012 by Amelie Maia and Christina Winkless.
 
 These drawings have been updated as interactive NFT's for [hicetnunc](https://www.hicetnunc.xyz/).
 
