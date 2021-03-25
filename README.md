@@ -4,12 +4,6 @@
 
 These drawings have been updated as interactive NFT's for [hicetnunc](https://www.hicetnunc.xyz/).
 
-<img src="circles/thumbnail.jpg" alt="circles" width="250"/>
-<img src="nodes/thumbnail.jpg" alt="nodes" width="250"/>
-<img src="petals/thumbnail.jpg" alt="petals" width="250"/>
-<img src="random-lines/thumbnail.jpg" alt="random lines" width="250"/>
-<img src="rectangles/thumbnail.jpg" alt="rectangles" width="250"/>
-<img src="circle-lines/thumbnail.jpg" alt="circle lines" width="250"/>
-<img src="spiral/thumbnail.jpg" alt="spiral" width="250"/>
-
 The code for these NFT's are completely free to use however you wish!
+
+![Posters](./thumbnail.jpg)
