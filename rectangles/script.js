@@ -8,6 +8,10 @@ function init() {
   draw();
 }
 
+function randomNumber(min, max) {
+  return min + Math.random() * (max - min);
+}
+
 function draw() {
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
@@ -28,12 +32,8 @@ function draw() {
     "#F26B43",
   ];
 
-  function randomNumber(min, max) {
-    return min + Math.random() * (max - min);
-  }
-
-  for (var x = 0; x < rows; x++) {
-    for (var y = 0; y < columns; y++) {
+  for (let x = 0; x < rows; x++) {
+    for (let y = 0; y < columns; y++) {
       const sizeX = randomNumber(size * 0.1, size);
       const sizeY = randomNumber(size * 0.1, size);
       ctx.beginPath();

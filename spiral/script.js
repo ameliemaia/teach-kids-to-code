@@ -1,5 +1,6 @@
 const devicePixelRatio = Math.min(window.devicePixelRatio, 2);
 let canvas, ctx;
+let seed = 0;
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -11,6 +12,7 @@ function init() {
 function draw() {
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
+  seed++;
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#ffffff";
@@ -24,14 +26,14 @@ function draw() {
   const scale = radius / numberOfCircles;
   const colors = ["#5CC4BE", "#F6D86B", "#F26B6C"];
 
-  for (var i = 0; i < numberOfCircles; i++) {
+  for (let i = 0; i < numberOfCircles; i++) {
     angle++;
     spiralRadius += scale;
     circleRadius += scale / 15;
     const x = centerX + Math.cos(angle) * (spiralRadius * 0.85);
     const y = centerY + Math.sin(angle) * (spiralRadius * 0.85);
     ctx.beginPath();
-    ctx.fillStyle = colors[i % colors.length];
+    ctx.fillStyle = colors[(i + seed) % colors.length];
     ctx.arc(x, y, circleRadius, 0, Math.PI * 2, false);
     ctx.fill();
     ctx.closePath();
@@ -64,4 +66,5 @@ window.addEventListener("resize", function () {
   resize(window.innerWidth, window.innerHeight, devicePixelRatio);
 });
 
+document.body.addEventListener("click", draw);
 document.body.onload = init;

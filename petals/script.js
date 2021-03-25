@@ -8,6 +8,10 @@ function init() {
   draw();
 }
 
+function randomNumber(min, max) {
+  return min + Math.random() * (max - min);
+}
+
 function draw(isThumbnail) {
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
@@ -16,12 +20,7 @@ function draw(isThumbnail) {
   ctx.fillStyle = "#ffffff";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  function randomNumber(min, max) {
-    return min + Math.random() * (max - min);
-  }
-
-  var numberOfLines = 360;
-  let lineAngleIncrement = 0;
+  const numberOfLines = 360;
   const radius = Math.min(canvas.width, canvas.height) / 2;
 
   const colors = [
@@ -35,12 +34,11 @@ function draw(isThumbnail) {
 
   ctx.globalCompositeOperation = "multiply";
 
-  for (var i = 0; i < numberOfLines; i++) {
+  let lineAngleIncrement = 0;
+  for (let i = 0; i < numberOfLines; i++) {
     const angle = i * ((Math.PI * 2) / numberOfLines);
     lineAngleIncrement += 0.07;
-
     const lineRadius = Math.sin(lineAngleIncrement) * radius;
-
     const lineStart = {
       x: centerX,
       y: centerY,

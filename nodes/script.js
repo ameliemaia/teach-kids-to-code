@@ -8,6 +8,10 @@ function init() {
   draw();
 }
 
+function randomNumber(min, max) {
+  return min + Math.random() * (max - min);
+}
+
 function draw(isThumbnail) {
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
@@ -16,16 +20,11 @@ function draw(isThumbnail) {
   ctx.fillStyle = "#ffffff";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  function randomNumber(min, max) {
-    return min + Math.random() * (max - min);
-  }
-
   const maxSize = Math.min(canvas.width, canvas.height);
-
-  var numberOfNodes = 50;
-  var nodesArray = [];
-  var nodeDistanceThreshold = maxSize / 4;
-  var colors = [
+  const numberOfNodes = 50;
+  const nodes = [];
+  const nodeDistanceThreshold = maxSize / 4;
+  const colors = [
     "#576372",
     "#5CC4BE",
     "#C8DC67",
@@ -34,7 +33,7 @@ function draw(isThumbnail) {
     "#F26B43",
   ];
 
-  for (var i = 0; i < numberOfNodes; i++) {
+  for (let i = 0; i < numberOfNodes; i++) {
     const x = randomNumber(canvas.width * 0.05, canvas.width * 0.95);
     const y = randomNumber(canvas.height * 0.05, canvas.height * 0.95);
     let radius = randomNumber(5, 50);
@@ -50,15 +49,10 @@ function draw(isThumbnail) {
     return Math.sqrt(a * a + b * b);
   }
 
-  for (var j = 0; j < nodesArray.length; j++) {
-    for (var k = 0; k < nodesArray.length; k++) {
+  for (let j = 0; j < nodes.length; j++) {
+    for (let k = 0; k < nodes.length; k++) {
       const dist = Math.abs(
-        distance(
-          nodesArray[j].x,
-          nodesArray[k].x,
-          nodesArray[j].y,
-          nodesArray[k].y
-        )
+        distance(nodes[j].x, nodes[k].x, nodes[j].y, nodes[k].y)
       );
       if (dist < nodeDistanceThreshold) {
         ctx.beginPath();
@@ -67,8 +61,8 @@ function draw(isThumbnail) {
         if (isThumbnail == true) {
           ctx.lineWidth /= devicePixelRatio;
         }
-        ctx.moveTo(nodesArray[j].x, nodesArray[j].y);
-        ctx.lineTo(nodesArray[k].x, nodesArray[k].y);
+        ctx.moveTo(nodes[j].x, nodes[j].y);
+        ctx.lineTo(nodes[k].x, nodes[k].y);
         ctx.stroke();
         ctx.closePath();
       }
@@ -81,8 +75,7 @@ function draw(isThumbnail) {
     ctx.arc(x, y, radius, 0, Math.PI * 2, false);
     ctx.fill();
     ctx.closePath();
-    const node = { x, y };
-    nodesArray.push(node);
+    nodes.push({ x, y });
   }
 }
 

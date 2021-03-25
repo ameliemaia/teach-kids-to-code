@@ -8,6 +8,10 @@ function init() {
   draw();
 }
 
+function randomNumber(min, max) {
+  return min + Math.random() * (max - min);
+}
+
 function draw(isThumbnail) {
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
@@ -27,13 +31,9 @@ function draw(isThumbnail) {
     "#F26B43",
   ];
 
-  function randomNumber(min, max) {
-    return min + Math.random() * (max - min);
-  }
-
   ctx.globalCompositeOperation = "multiply";
 
-  for (var i = 0; i < numberOfLines; i++) {
+  for (let i = 0; i < numberOfLines; i++) {
     ctx.beginPath();
     const lineStart = {
       x: randomNumber(0, canvas.width),

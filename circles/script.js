@@ -1,5 +1,6 @@
 const devicePixelRatio = Math.min(window.devicePixelRatio, 2);
 let canvas, ctx;
+let seed = 0;
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -11,6 +12,7 @@ function init() {
 function draw() {
   const centerX = canvas.width / 2;
   const centerY = canvas.height / 2;
+  seed++;
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#ffffff";
@@ -26,7 +28,7 @@ function draw() {
     const x = centerX + Math.cos(theta) * radius;
     const y = centerY + Math.sin(theta) * radius;
     ctx.beginPath();
-    ctx.fillStyle = colors[i];
+    ctx.fillStyle = colors[(i + seed) % colors.length];
     ctx.arc(x, y, radius, 0, Math.PI * 2, false);
     ctx.fill();
     ctx.closePath();
@@ -59,4 +61,5 @@ window.addEventListener("resize", function () {
   resize(window.innerWidth, window.innerHeight, devicePixelRatio);
 });
 
+document.body.addEventListener("click", draw);
 document.body.onload = init;
