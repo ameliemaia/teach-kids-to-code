@@ -4,7 +4,7 @@ let canvas, ctx;
 function init() {
   canvas = document.getElementById("canvas");
   ctx = canvas.getContext("2d");
-  resize();
+  resize(window.innerWidth, window.innerHeight, devicePixelRatio);
   draw();
 }
 
@@ -13,6 +13,8 @@ function draw() {
   const centerY = canvas.height / 2;
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   const radius = Math.min(canvas.width, canvas.height) / 2;
   const colors = ["#5CC4BE", "#F6D86B", "#F26B6C"];
@@ -31,16 +33,30 @@ function draw() {
   }
 }
 
-function resize() {
-  const width = window.innerWidth * devicePixelRatio;
-  const height = window.innerHeight * devicePixelRatio;
-  canvas.setAttribute("width", width + "px");
-  canvas.setAttribute("height", height + "px");
-  canvas.style.width = window.innerWidth + "px";
-  canvas.style.height = window.innerHeight + "px";
+function resize(width, height, pixelRatio) {
+  const maxWidth = width * pixelRatio;
+  const maxHeight = height * pixelRatio;
+  canvas.setAttribute("width", maxWidth + "px");
+  canvas.setAttribute("height", maxHeight + "px");
+  canvas.style.width = width + "px";
+  canvas.style.height = height + "px";
   draw();
 }
 
-window.addEventListener("resize", resize);
+function saveImage() {
+  resize(1024, 1024, 1);
+  const link = document.createElement("a");
+  link.setAttribute("download", "thumbnail.jpg");
+  link.setAttribute(
+    "href",
+    canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream")
+  );
+  link.click();
+  resize(window.innerWidth, window.innerHeight, devicePixelRatio);
+}
+
+window.addEventListener("resize", function () {
+  resize(window.innerWidth, window.innerHeight, devicePixelRatio);
+});
 
 document.body.onload = init;
